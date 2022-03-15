@@ -1,10 +1,6 @@
 " Vim with all enhancements
 source $VIMRUNTIME/vimrc_example.vim
 
-colorscheme solarized
-syntax on
-set guifont=consolas:h16:cANSI
-
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
 if &diffopt !~# 'internal'
@@ -43,16 +39,43 @@ function MyDiff()
   endif
 endfunction
 
+"=======================================================================
+" Generic Configuration
 
+colorscheme solarized	"主题
+set guifont=consolas:h16:cANSI	"字体
+
+set nocompatible    "设置不兼容原始vi模式
+filetype on     "设置开启文件类型侦测
+filetype plugin on  "加载对应插件类型
+syntax enable       "开启语法高亮功能
+syntax on       "自动语法高亮
+set number      "开启行号显示
+set cursorline      "高亮显示当前行
+
+"=======================================================================
+" Plugin
 
 call plug#begin('~/.vim/plugged')
 
+" vim-airline
 Plug 'vim-airline/vim-airline'
 
+" nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 nnoremap <leader>t :NERDTreeToggle<CR>
 
+" rainbow
 Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_active = 1
+
+" LeaderF
+Plug 'Yggdroot/LeaderF'
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_ShortcutF = <leader>f
+
+" auto-pairs
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
