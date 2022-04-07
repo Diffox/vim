@@ -43,6 +43,9 @@ Plug 'preservim/nerdcommenter'
 " vim-gutentag
 Plug 'ludovicchabant/vim-gutentags'
 
+" tpope/vim-projectionist
+Plug 'tpope/vim-projectionist'
+
 call plug#end()
 
 "=======================================================================
@@ -121,3 +124,12 @@ let g:gutentags_cache_dir = s:vim_tags
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+
+" tpope/vim-projectionist
+let g:projectionist_heuristics = {
+\   "*" : {
+\       "*.cc": { "alternate": "{}.h" },
+\       "*.h": { "alternate": "{}.cc" }
+\   }
+\ }
+nnoremap <silent> <F12> :A<CR>
